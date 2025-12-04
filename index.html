@@ -32,6 +32,7 @@
 
     header img {
       height: 80px;
+      max-width: 100%;
     }
 
     /* WAVE DIVIDER */
@@ -55,15 +56,43 @@
       100% { transform: translateX(0); }
     }
 
-    /* HERO */
-   .hero {
-  text-align: center;
-  padding: 120px 20px 140px; /* bigger padding for cinematic look */
-  background: url("cinematic-hero.mp4") center/cover no-repeat;
-  color: #1f2a36;
-  position: relative;
-}
+    /* HERO WITH VIDEO */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 140px 20px 140px;
+      color: #1f2a36;
+      overflow: hidden;
+    }
 
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(0.7);
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.75),
+        rgba(255, 255, 255, 0.9)
+      );
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      margin: 0 auto;
     }
 
     .hero h1 {
@@ -76,12 +105,12 @@
       max-width: 600px;
       margin: 10px auto 20px;
       font-size: 19px;
-      opacity: 0.8;
+      opacity: 0.85;
     }
 
     .tagline {
       font-size: 22px;
-      margin-top: 15px;
+      margin-top: 10px;
       color: var(--blue);
       font-weight: 600;
     }
@@ -145,6 +174,10 @@
       margin-top: 0;
     }
 
+    .card p {
+      font-size: 16px;
+    }
+
     /* SHOP */
     .shop-grid {
       display: grid;
@@ -192,6 +225,7 @@
       text-decoration: none;
       transition: 0.25s;
       margin-top: 8px;
+      font-size: 15px;
     }
 
     .add-btn:hover {
@@ -213,20 +247,46 @@
       color: var(--blue);
       font-size: 16px;
     }
+
+    /* SIMPLE MOBILE TWEAKS */
+    @media (max-width: 600px) {
+      .hero {
+        padding: 110px 16px 120px;
+      }
+
+      .hero h1 {
+        font-size: 34px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      .tagline {
+        font-size: 19px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
 <header>
-  <img src="oceanbaby-logo.jpg" alt="OceanBaby Logo">
+  <!-- Update src if your logo path/name is different -->
+  <img src="images/oceanbaby-logo.jpg" alt="OceanBaby Logo">
 </header>
 
 <section class="hero">
-  <h1>Swimwear For Every Little Body</h1>
-  <p>Made for giggles, splashes, and chunky cuddles.</p>
-  <p class="tagline">“For the bubbas with extra love rolls.”</p>
-  <button>Shop Coming Soon</button>
+  <video autoplay muted loop playsinline class="hero-video">
+    <source src="images/cinematic-hero.mp4" type="video/mp4">
+  </video>
+
+  <div class="hero-content">
+    <h1>Swimwear For Every Little Body</h1>
+    <p>Made for giggles, splashes, and chunky cuddles.</p>
+    <p class="tagline">“For the bubbas with extra love rolls.”</p>
+    <button>Shop Coming Soon</button>
+  </div>
 </section>
 
 <div class="wave">
@@ -269,28 +329,28 @@
 
   <div class="shop-grid">
     <div class="product">
-      <img src="product1.jpg" alt="Swimsuit">
+      <img src="images/product1.jpg" alt="Seafoam One-Piece">
       <h4>Seafoam One-Piece</h4>
       <div class="price">$39.95</div>
       <a class="add-btn">View</a>
     </div>
 
     <div class="product">
-      <img src="product2.jpg" alt="Swimsuit">
+      <img src="images/product2.jpg" alt="Blue Waves Rashie">
       <h4>Blue Waves Rashie</h4>
       <div class="price">$32.95</div>
       <a class="add-btn">View</a>
     </div>
 
     <div class="product">
-      <img src="product3.jpg" alt="Swimsuit">
+      <img src="images/product3.jpg" alt="Little Seal Set">
       <h4>Little Seal Set</h4>
       <div class="price">$44.95</div>
       <a class="add-btn">View</a>
     </div>
 
     <div class="product">
-      <img src="product4.jpg" alt="Swimsuit">
+      <img src="images/product4.jpg" alt="Ocean Breeze Shorts">
       <h4>Ocean Breeze Shorts</h4>
       <div class="price">$29.95</div>
       <a class="add-btn">View</a>
@@ -317,3 +377,4 @@
 
 </body>
 </html>
+
